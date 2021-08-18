@@ -1,0 +1,125 @@
+﻿@model WebDemo.Models.Sanpham
+@{
+    ViewBag.Title = "Deltails";
+}
+<link rel="stylesheet" href="/Content/bootstrap.min.css">
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<style>
+    .ls {
+        padding-left: 150px;
+    }
+
+    .left-column {
+        float: left;
+        width: 33%;
+        height: 600px;
+        padding-top: 60px;
+    }
+
+    .right-column {
+        float: left;
+        width: 60%;
+        height: 600px;
+        padding-top: 60px;
+    }
+
+    .product-price b, .product-price button {
+        float: left;
+    }
+
+    .product-price button {
+        margin-top: -6px;
+    }
+
+    .product-price {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .adcart {
+        background: white;
+        border: 0px;
+    }
+    .img-top{
+        float: left;
+    }
+    .next-img{
+        float: left;
+        margin-top: 20px;
+        padding-left: 80px; 
+    }
+    .next-img form{
+        float: left;
+        width: 50%;
+        padding-right: 30px;
+    }
+</style>
+
+<div class="container">
+    <div class="ls">
+        <div class="left-column">
+            <div class="img-top">
+                <img data-image="black" src="@Model.anh" alt="" style="width: 300px;">
+            </div>
+            <div class="next-img">
+                @using (Html.BeginForm("Previous", "Home", FormMethod.Get))
+                {
+                    <input type="number" name="masp" value="@Model.masp" hidden />
+                    <input type="submit" class="btn btn-group-vertical" value="Previous" />
+                }
+                @using (Html.BeginForm("Next", "Home", FormMethod.Get))
+                {
+                    <input type="number" name="masp" value="@Model.masp" hidden />
+                    <input type="submit" class="btn btn-group-vertical" value="Next" />
+                }
+            </div>
+        </div>
+
+        <div class="right-column">
+
+            <div class="product-description">
+                <h1>@Model.tensp</h1>
+                <p>@Model.mota</p>
+            </div>
+            <div class="product-configuration">
+                <div class="product-color">
+                    <span>Kích cỡ:</span>
+                    <button>@Model.kichco</button>
+                </div>
+            </div>
+            <div class="product-price">
+                <b>Giá: @Model.giasp</b><b>đ</b>
+                <button class="btn adcart addcart sp" id="@Model.masp">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.addcart').on('click', function () {
+            var masp = parseInt($(this).closest('.sp').prop('id'));
+            alert(masp);
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                url: 'AddCart',
+                data: "{'masanpham':'" + masp + "'}",
+                success: function (data) {
+                    if (parseInt(data) > 0) {
+                        $(".cartcount").css("display", "block")
+                        $('#count').html(data)
+                    }
+                },
+                error: function (data) {
+                    $('.ids').html(data)
+                }
+            })
+        })
+    })
+</script>
+

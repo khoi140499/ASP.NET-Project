@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DatHang">
+          <Key>
+            <PropertyRef Name="madon" />
+          </Key>
+          <Property Name="madon" Type="int" Nullable="false" />
+          <Property Name="masp" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="size" Type="varchar" MaxLength="5" />
+          <Property Name="thanhtien" Type="bigint" />
+          <Property Name="ngaydat" Type="date" />
+          <Property Name="ghichu" Type="text" />
+          <Property Name="diachi" Type="text" />
+        </EntityType>
+        <EntityType Name="GioHang">
+          <Key>
+            <PropertyRef Name="magh" />
+          </Key>
+          <Property Name="magh" Type="int" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="soluong" Type="int" />
+        </EntityType>
+        <EntityType Name="Sanpham">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="60" />
+          <Property Name="loaisanpham" Type="nvarchar" MaxLength="50" />
+          <Property Name="giasp" Type="bigint" />
+          <Property Name="mota" Type="nvarchar" MaxLength="500" />
+          <Property Name="anh" Type="text" />
+          <Property Name="luotxem" Type="int" />
+          <Property Name="ngaydang" Type="date" />
+          <Property Name="kichco" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="matv" />
+          </Key>
+          <Property Name="matv" Type="int" Nullable="false" />
+          <Property Name="username" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="fullname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="phone" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="nchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BanHangModelStoreContainer">
+          <EntitySet Name="DatHang" EntityType="Self.DatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sanpham" EntityType="Self.Sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DatHang">
+          <Key>
+            <PropertyRef Name="madon" />
+          </Key>
+          <Property Name="madon" Type="Int32" Nullable="false" />
+          <Property Name="masp" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="size" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="thanhtien" Type="Int64" />
+          <Property Name="ngaydat" Type="DateTime" Precision="0" />
+          <Property Name="ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GioHang">
+          <Key>
+            <PropertyRef Name="magh" />
+          </Key>
+          <Property Name="magh" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="soluong" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Sanpham">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="tensp" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="loaisanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giasp" Type="Int64" />
+          <Property Name="mota" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="luotxem" Type="Int32" />
+          <Property Name="ngaydang" Type="DateTime" Precision="0" />
+          <Property Name="kichco" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="matv" />
+          </Key>
+          <Property Name="matv" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BanHangEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DatHangs" EntityType="Self.DatHang" />
+          <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
+          <EntitySet Name="Sanphams" EntityType="Self.Sanpham" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BanHangModelStoreContainer" CdmEntityContainer="BanHangEntities2">
+          <EntitySetMapping Name="DatHangs">
+            <EntityTypeMapping TypeName="BanHangModel.DatHang">
+              <MappingFragment StoreEntitySet="DatHang">
+                <ScalarProperty Name="madon" ColumnName="madon" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+                <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GioHangs">
+            <EntityTypeMapping TypeName="BanHangModel.GioHang">
+              <MappingFragment StoreEntitySet="GioHang">
+                <ScalarProperty Name="magh" ColumnName="magh" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sanphams">
+            <EntityTypeMapping TypeName="BanHangModel.Sanpham">
+              <MappingFragment StoreEntitySet="Sanpham">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="loaisanpham" ColumnName="loaisanpham" />
+                <ScalarProperty Name="giasp" ColumnName="giasp" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="luotxem" ColumnName="luotxem" />
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+                <ScalarProperty Name="kichco" ColumnName="kichco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BanHangModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="matv" ColumnName="matv" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
